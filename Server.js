@@ -23,6 +23,17 @@ export const google = {
    oauth_logout: 'https://accounts.google.com/o/oauth2/revoke',
 };
 
+export const salesforce = {
+    client_id: '3MVG9YDQS5WtC11oAXlFPZVyLr_5JxKKlSxQhp120myNzdxtMfUsEobyOYlFsXp6l.aRHYwf.C2TFo4spMN9Y',
+    client_secret: '5002434176474309266',
+    oauth_dialog: 'https://ap4.salesforce.com/services/oauth2/authorize',
+    redirect_uri: 'https://ap4.salesforce.com/services/oauth2/success',
+    oauth_token: 'https://ap4.salesforce.com/services/oauth2/token',
+    oauth_profile: 'https://ap4.salesforce.com/services/oauth2/profile',
+    oauth_logout: 'https://ap4.salesforce.com/services/oauth2/logout',
+};
+
+
 export default {
   facebook: {
     token: function (code) {
@@ -82,6 +93,44 @@ export default {
       let url = `${google.oauth_logout}?token=${token}`,
           opt = {
             method: 'get'
+          };
+
+      return fetch(url, opt);
+    },
+  },
+  salesforce: {
+    token: function (code) {
+      let url = `${salesforce.oauth_token}?client_id=${salesforce.client_id}&client_secret=${salesforce.client_secret}&redirect_uri=${salesforce.redirect_uri}`,
+      //console.log("url = " + url)
+          opt = {
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          };
+
+      return fetch(url, opt);
+    },
+    profile: function (token) {
+      console.log("---" + token)
+      let url = `${salesforce.oauth_profile}?alt=json&access_token=${token}`,
+          opt = {
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          };
+
+      return fetch(url, opt);
+    },
+    logout: function (token) {
+      console.log("---" + token)
+      let url = `${salesforce.oauth_logout}?token=${token}`,
+          opt = {
+            method: 'get',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
           };
 
       return fetch(url, opt);

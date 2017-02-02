@@ -11,7 +11,7 @@ import  {
   TouchableHighlight
 } from 'react-native';
 
-import api, {key, facebook} from './Server';
+import api, {key, salesforce} from './Server';
 import stylesheet from './Style';
 
 export default class extends Component {
@@ -21,39 +21,43 @@ export default class extends Component {
     this.state = {
           code: undefined,
          token: undefined,
-        access: undefined,
       response: undefined,
-       loading: false,
+       loading: false
     };
   }
 
   render() {
+
     if (this.state.response) return this.renderResponse();
-    if (this.state.access) return this.fetchProfile();
-    if (this.state.token) return this.fetchAccess();
+    if (this.state.token) return this.fetchProfile();
     if (this.state.code) return this.fetchToken();
 
     return this.renderScene();
   }
 
   renderScene() {
+    //console.log(" URI " + ${salesforce.oauth_dialog}?client_id=${salesforce.client_id}&redirect_uri=${salesforce.redirect_uri}&response_type=code)
+
     return (
       <WebView
-        url={`${facebook.oauth_dialog}?client_id=${facebook.client_id}&redirect_uri=${facebook.redirect_uri}`}
+        source={{uri:`${salesforce.oauth_dialog}?client_id=${salesforce.client_id}&redirect_uri=${salesforce.redirect_uri}&response_type=code`,headers:{'Content-Type': 'application/x-www-form-urlencoded'}}}
         javaScriptEnabledAndroid={true}
         automaticallyAdjustContentInsets={false}
         scalesPageToFit={true}
+        startInLoadingState={true}
         onNavigationStateChange={this.onNavigationStateChange.bind(this)}
       />
+
     );
   }
 
   renderResponse() {
+    console.log("--- get response ---" + this.state.response)
     let profile = JSON.parse(this.state.response);
 
     return (
       <View style={styles.container}>
-        <Image style={styles.image} source={{uri: profile.picture.data.url}} />
+        <Image style={styles.image} source={{uri: profile.picture}} />
         <Text style={styles.welcome}>{profile.name}</Text>
         <TouchableHighlight
           style={[styles.button, (this.state.loading ? styles.buttonDisabled : styles.buttonActive)]}
@@ -66,9 +70,10 @@ export default class extends Component {
   }
 
   fetchToken() {
+    console.log("--- get token ---" + this.state.token + "-" + this.state.code )
     if (this.state.token) return null;
 
-    api.facebook.token(this.state.code)
+    api.salesforce.token(this.state.code)
       .then((response) => {
         if (!response.ok) throw Error(response.statusText || response._bodyText);
         return response.json()
@@ -88,29 +93,11 @@ export default class extends Component {
     return null;
   }
 
-  fetchAccess() {
-    if (this.state.access) return null;
-
-    api.facebook.access(this.state.token)
-      .then((response) => {
-        if ((/access_token=/g).test(response._bodyText)) {
-          this.setState({
-            access: String(response._bodyText.split('&')[0]).replace('access_token=','')
-          });
-        }
-      })
-      .catch((error) => {
-        this.onError(error);
-      })
-      .done();
-
-    return null;
-  }
-
   fetchProfile() {
+    console.log("--- get profile ---" + this.state.token + "-" + this.state.response )
     if (this.state.response) return null;
 
-    api.facebook.profile(this.state.access)
+    api.salesforce.profile(this.state.token)
       .then((response) => {
         if (!response.ok) throw Error(response.statusText || response._bodyText);
         return response.json()
@@ -130,9 +117,10 @@ export default class extends Component {
   }
 
   onNavigationStateChange(navState) {
+    console.log(navState.url)
     if ((/code=/g).test(String(navState.url))) {
       this.setState({
-        code: String(navState.url).replace(`${facebook.redirect_uri}?code=`,'')
+        code: String(navState.url).replace(`${salesforce.redirect_uri}?code=`,'')
       });
     }
   }
@@ -145,14 +133,13 @@ export default class extends Component {
 
     this.setState({loading: true});
 
-    api.facebook.logout(this.state.access)
+    api.salesforce.logout(this.state.token)
       .then((response) => {
         if (!response.ok) throw Error(response.statusText || response._bodyText);
 
         this.setState({
-              code: undefined,
-             token: undefined,
-            access: undefined,
+          code: undefined,
+          token: undefined,
           response: undefined
         });
 
