@@ -1,19 +1,84 @@
 {
-  "name": "react-native-sso-authentication",
-  "version": "1.0.3",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_args": [
+    [
+      {
+        "raw": "react-native-sso-authentication@^1.0.3",
+        "scope": null,
+        "escapedName": "react-native-sso-authentication",
+        "name": "react-native-sso-authentication",
+        "rawSpec": "^1.0.3",
+        "spec": ">=1.0.3 <2.0.0",
+        "type": "range"
+      },
+      "/home/determinant/ReactJS/reactOAuth"
+    ]
+  ],
+  "_from": "react-native-sso-authentication@>=1.0.3 <2.0.0",
+  "_id": "react-native-sso-authentication@1.0.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-sso-authentication",
+  "_nodeVersion": "4.1.1",
+  "_npmOperationalInternal": {
+    "host": "packages-5-east.internal.npmjs.com",
+    "tmp": "tmp/react-native-sso-authentication-1.0.3.tgz_1454717191754_0.30090066883713007"
   },
-  "author": "Lussa Teknologi",
-  "license": "ISC",
-  "description": "a native sso authentication for react native",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lussatech/react-native-sso-authentication.git"
+  "_npmUser": {
+    "name": "iman-syah",
+    "email": "iman@lussa.net"
+  },
+  "_npmVersion": "3.5.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-sso-authentication@^1.0.3",
+    "scope": null,
+    "escapedName": "react-native-sso-authentication",
+    "name": "react-native-sso-authentication",
+    "rawSpec": "^1.0.3",
+    "spec": ">=1.0.3 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-sso-authentication/-/react-native-sso-authentication-1.0.3.tgz",
+  "_shasum": "7be53023a1a46e4c78ee7b25d852bb38d4a4c519",
+  "_shrinkwrap": null,
+  "_spec": "react-native-sso-authentication@^1.0.3",
+  "_where": "/home/determinant/ReactJS/reactOAuth",
+  "author": {
+    "name": "Lussa Teknologi"
   },
   "bugs": {
     "url": "https://github.com/lussatech/react-native-sso-authentication/issues"
   },
-  "homepage": "https://github.com/lussatech/react-native-sso-authentication"
+  "dependencies": {},
+  "description": "a native sso authentication for react native",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "7be53023a1a46e4c78ee7b25d852bb38d4a4c519",
+    "tarball": "https://registry.npmjs.org/react-native-sso-authentication/-/react-native-sso-authentication-1.0.3.tgz"
+  },
+  "gitHead": "460118cad751a7ef1e23e9b7abae15658449352c",
+  "homepage": "https://github.com/lussatech/react-native-sso-authentication",
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "iman-syah",
+      "email": "iman@lussa.net"
+    }
+  ],
+  "name": "react-native-sso-authentication",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lussatech/react-native-sso-authentication.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.3"
 }

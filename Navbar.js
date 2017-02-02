@@ -14,10 +14,7 @@ import {
 import ToolbarAndroid from 'ToolbarAndroid';
 
 export default class extends Component {
-  static propTypes = {
-     onSearch: PropTypes.func,
-    onRefresh: PropTypes.func
-  };
+  
 
   constructor(props) {
     super(props);

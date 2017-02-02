@@ -38,7 +38,7 @@ export default class extends Component {
   renderScene() {
     return (
       <WebView
-        url={`${google.oauth_dialog}?scope=email profile&redirect_uri=${google.redirect_uri}&response_type=code&client_id=${google.client_id}`}
+        source={{uri:`${google.oauth_dialog}?scope=email profile&redirect_uri=${google.redirect_uri}&response_type=code&client_id=${google.client_id}`}}
         javaScriptEnabledAndroid={true}
         automaticallyAdjustContentInsets={false}
         scalesPageToFit={true}

@@ -39,7 +39,7 @@ export default class extends Component {
   renderScene() {
     return (
       <WebView
-        url={`${facebook.oauth_dialog}?client_id=${facebook.client_id}&redirect_uri=${facebook.redirect_uri}`}
+        source={{uri:`${facebook.oauth_dialog}?client_id=${facebook.client_id}&redirect_uri=${facebook.redirect_uri}`}}
         javaScriptEnabledAndroid={true}
         automaticallyAdjustContentInsets={false}
         scalesPageToFit={true}

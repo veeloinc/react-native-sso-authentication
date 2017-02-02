@@ -4,12 +4,12 @@ var     fs = require('fs')
   ,   path = require('path')
   , source = path.resolve('node_modules', 'react-native-sso-authentication')
   , target = path.resolve(process.cwd(), 'lib')
-  , ignore = ['cli.js', 'package.json', 'readme.md', 'preview.gif'];
+  , ignore = ['cli.js', 'package.json', 'readme.md'];
 
 function run() {
   try {
     var packages = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8')) || undefined;
-  } catch (e) {
+  } catch (e) {v
     console.error('package.json couldn\'t be found, maybe `%s` is not the root of project directory', process.cwd());
     process.exit(1);
   } finally {
