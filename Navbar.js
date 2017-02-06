@@ -7,10 +7,9 @@ import {
   ToastAndroid,
   View,
   Text,
-  TextInput
+  TextInput,
+  ToolbarAndroid
 } from 'react-native';
-
-import ToolbarAndroid from 'ToolbarAndroid';
 
 export default class extends Component {
   static propTypes = {
