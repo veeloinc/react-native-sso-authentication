@@ -3,8 +3,6 @@
 export const key = '@lussatech:session';
 
 export const facebook = {
-      client_id: '1505435769762540',
-  client_secret: '210bdcf50efa27bc5bfc93b81a8b903d',
    oauth_dialog: 'https://www.facebook.com/dialog/oauth',
    redirect_uri: 'https://www.facebook.com/connect/login_success.html',
     oauth_token: 'https://graph.facebook.com/v2.3/oauth/access_token',
@@ -14,8 +12,6 @@ export const facebook = {
 };
 
 export const google = {
-      client_id: '119869562795-rtsscilu9cb895r35dkokrvi6no9hvcd.apps.googleusercontent.com',
-  client_secret: '87bg-4ElD3iUHI9kwR_Z1w2v',
    oauth_dialog: 'https://accounts.google.com/o/oauth2/v2/auth',
    redirect_uri: 'https://www.facebook.com/connect/login_success.html',
     oauth_token: 'https://www.googleapis.com/oauth2/v4/token',
@@ -24,8 +20,6 @@ export const google = {
 };
 
 export const salesforce = {
-    client_id: '3MVG9YDQS5WtC11oAXlFPZVyLr_5JxKKlSxQhp120myNzdxtMfUsEobyOYlFsXp6l.aRHYwf.C2TFo4spMN9Y',
-    client_secret: '5002434176474309266',
     oauth_dialog: 'https://ap4.salesforce.com/services/oauth2/authorize',
     redirect_uri: 'https://ap4.salesforce.com/services/oauth2/success',
     oauth_token: 'https://ap4.salesforce.com/services/oauth2/token',
