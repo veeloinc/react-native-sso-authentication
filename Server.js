@@ -92,42 +92,4 @@ export default {
       return fetch(url, opt);
     },
   },
-  salesforce: {
-    token: function (code) {
-      let url = `${salesforce.oauth_token}?client_id=${salesforce.client_id}&client_secret=${salesforce.client_secret}&redirect_uri=${salesforce.redirect_uri}`,
-      //console.log("url = " + url)
-          opt = {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-    profile: function (token) {
-      console.log("---" + token)
-      let url = `${salesforce.oauth_profile}?alt=json&access_token=${token}`,
-          opt = {
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-    logout: function (token) {
-      console.log("---" + token)
-      let url = `${salesforce.oauth_logout}?token=${token}`,
-          opt = {
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-  }
 };
