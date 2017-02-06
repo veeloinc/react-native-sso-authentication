@@ -10,7 +10,7 @@ import {
   ToastAndroid
 } from 'react-native';
 
-import ToolbarAndroid from 'ToolbarAndroid';
+// import ToolbarAndroid from 'ToolbarAndroid';
 
 import Facebook from './Facebook';
 import Google from './Google';
