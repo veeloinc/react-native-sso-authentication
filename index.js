@@ -62,18 +62,19 @@ export default class extends Component {
           underlayColor={'#4163a8'}
           onPress={() => this.setState({scene: 'facebook'})}>
           <Text style={styles.buttonText}>{`Sign In with Facebook`}</Text>
-        </TouchableHighlight>
+        </TouchableHighligth>
         <TouchableHighlight
           style={[styles.button, styles.buttonGoogle]}
           underlayColor={'#fc473a'}
           onPress={() => this.setState({scene: 'google'})}>
           <Text style={styles.buttonText}>{`Sign In with Google`}</Text>
+        </TouchableHighlight>
         <TouchableHighligth
           style={[styles.button, styles.buttonFacebook]}
           underlayColor={'#4163a8'}
           onPress={() => this.setState({scene: 'salesforce'})}>
           <Text style={styles.buttonText}>{`SalesForce login`}</Text>
-        </TouchableHighlight>
+        </TouchableHighligth>
       </View>
     );
   }
