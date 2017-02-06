@@ -20,11 +20,11 @@ export const google = {
 };
 
 export const salesforce = {
-    oauth_dialog: 'https://ap4.salesforce.com/services/oauth2/authorize',
-    redirect_uri: 'https://ap4.salesforce.com/services/oauth2/success',
-    oauth_token: 'https://ap4.salesforce.com/services/oauth2/token',
-    oauth_profile: 'https://ap4.salesforce.com/services/oauth2/profile',
-    oauth_logout: 'https://ap4.salesforce.com/services/oauth2/logout',
+    oauth_dialog: 'https://login.salesforce.com/services/oauth2/authorize',
+    redirect_uri: 'https://login.salesforce.com/services/oauth2/success',
+    oauth_token: 'https://login.salesforce.com/services/oauth2/token',
+    oauth_profile: 'https://login.salesforce.com/services/oauth2/profile',
+    oauth_logout: 'https://login.salesforce.com/services/oauth2/logout',
 };
 
 
