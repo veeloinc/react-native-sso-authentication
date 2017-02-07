@@ -22,6 +22,7 @@ export default class extends Component {
 
   constructor(props) {
     super(props);
+    this.oauthSuccess = false
 
     this.state = {
           code: undefined,
@@ -50,12 +51,15 @@ export default class extends Component {
   }
 
   onNavigationStateChange(navState) {
-    if ((/code=/g).test(String(navState.url))) {
-      let code = String(navState.url).replace(`${salesforce.redirect_uri}?code=`,'');
-      this.props.getAuthCode( code );
-      this.setState({
-        code: code
-      });
+    if (!this.oauthSuccess) {
+        if ((/code=/g).test(String(navState.url))) {
+            let code = String(navState.url).replace(`${salesforce.redirect_uri}?code=`, '');
+            this.props.getAuthCode(code);
+            this.setState({
+                code: code
+            });
+            this.oauthSuccess = true
+        }
     }
   }
 
