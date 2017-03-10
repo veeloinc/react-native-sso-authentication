@@ -45,6 +45,7 @@ export default class extends Component {
         scalesPageToFit={true}
         startInLoadingState={true}
         onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+        onLoad={this.props.onLoad}
       />
 
     );
