@@ -17,7 +17,7 @@ import stylesheet from './Style';
 export default class extends Component {
   
   static propTypes = {
-    getAuthCode: PropTypes.func.isRequired
+    onOauthCodeSuccess: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -55,7 +55,7 @@ export default class extends Component {
     if (!this.oauthSuccess) {
         if ((/code=/g).test(String(navState.url))) {
             let code = String(navState.url).replace(`${salesforce.redirect_uri}?code=`, '');
-            this.props.getAuthCode(code);
+            this.props.onOauthCodeSuccess(code);
             this.setState({
                 code: code
             });
