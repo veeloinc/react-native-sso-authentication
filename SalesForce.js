@@ -17,7 +17,8 @@ import stylesheet from './Style';
 export default class extends Component {
   
   static propTypes = {
-    onOauthCodeSuccess: PropTypes.func.isRequired
+    onOauthCodeSuccess: PropTypes.func.isRequired,
+    onLoginStart: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -52,6 +53,10 @@ export default class extends Component {
   }
 
   onNavigationStateChange(navState) {
+    if ((/oauth2\/success\?code=\w+/g).test(String(navState.url))) {
+        this.props.onLoginStart()
+    }
+
     if (!this.oauthSuccess) {
         if ((/code=/g).test(String(navState.url))) {
             let code = String(navState.url).replace(`${salesforce.redirect_uri}?code=`, '');
