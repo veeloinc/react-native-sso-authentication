@@ -11,16 +11,10 @@ import  {
   TouchableHighlight
 } from 'react-native';
 
-import PropTypes from 'prop-types';
 import api, {key, salesforce} from './Server';
 import stylesheet from './Style';
 
 export default class extends Component {
-
-  static propTypes = {
-    onOauthCodeSuccess: PropTypes.func.isRequired,
-    onLoginStart: PropTypes.func.isRequired,
-  }
 
   constructor(props) {
     super(props);
