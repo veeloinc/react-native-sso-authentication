@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lussatech/react-native-sso-authentication/issues"
   },
-  "homepage": "https://github.com/lussatech/react-native-sso-authentication"
+  "homepage": "https://github.com/lussatech/react-native-sso-authentication",
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  }
 }
