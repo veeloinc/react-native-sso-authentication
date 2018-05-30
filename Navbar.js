@@ -6,9 +6,9 @@ import {
   View,
   Text,
   TextInput,
+  ToolbarAndroid
 } from 'react-native';
 import PropTypes from 'prop-types'
-import ToolbarAndroid from 'ToolbarAndroid';
 
 export default class extends Component {
   static propTypes = {

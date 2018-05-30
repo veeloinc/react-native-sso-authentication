@@ -7,10 +7,9 @@ import {
   View,
   TouchableHighlight,
   ScrollView,
-  ToastAndroid
+  ToastAndroid,
+  ToolbarAndroid
 } from 'react-native';
-
-import ToolbarAndroid from 'ToolbarAndroid';
 
 import Facebook from './Facebook';
 import Google from './Google';
