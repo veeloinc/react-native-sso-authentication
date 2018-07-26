@@ -15,6 +15,7 @@ import api, {key, salesforce} from './Server';
 import stylesheet from './Style';
 
 export default class extends Component {
+
   constructor(props) {
     super(props);
 
