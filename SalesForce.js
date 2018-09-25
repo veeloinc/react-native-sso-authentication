@@ -1,5 +1,5 @@
 'use strict';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import  {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import  {
   Image,
   TouchableHighlight
 } from 'react-native';
+import PropTypes from 'prop-types'
 
 import api, {key, salesforce} from './Server';
 import stylesheet from './Style';

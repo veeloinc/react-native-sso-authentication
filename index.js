@@ -56,12 +56,12 @@ export default class extends Component {
     return (
       <View>
 
-        <TouchableHighligth
+        <TouchableHighlight
           style={[styles.button, styles.buttonFacebook]}
           underlayColor={'#4163a8'}
           onPress={() => this.setState({scene: 'facebook'})}>
           <Text style={styles.buttonText}>{`Sign In with Facebook`}</Text>
-        </TouchableHighligth>
+        </TouchableHighlight>
         <TouchableHighlight
           style={[styles.button, styles.buttonGoogle]}
           underlayColor={'#fc473a'}

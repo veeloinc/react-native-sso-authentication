@@ -1,7 +1,5 @@
 'use strict';
-
-import React, { Component, PropTypes } from 'react';
-
+import React, { Component } from 'react';
 import {
   StyleSheet,
   ToastAndroid,
@@ -10,6 +8,7 @@ import {
   TextInput,
   ToolbarAndroid
 } from 'react-native';
+import PropTypes from 'prop-types'
 
 export default class extends Component {
   static propTypes = {
