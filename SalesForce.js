@@ -10,14 +10,21 @@ import  {
   Image,
   TouchableHighlight
 } from 'react-native';
+import PropTypes from 'prop-types'
 
 import api, {key, salesforce} from './Server';
 import stylesheet from './Style';
 
 export default class extends Component {
+  
+  static propTypes = {
+    onOauthCodeSuccess: PropTypes.func.isRequired,
+    onLoginStart: PropTypes.func.isRequired,
+  }
 
   constructor(props) {
     super(props);
+    this.oauthSuccess = false
 
     this.state = {
           code: undefined,
@@ -28,17 +35,10 @@ export default class extends Component {
   }
 
   render() {
-
-    if (this.state.response) return this.renderResponse();
-    if (this.state.token) return this.fetchProfile();
-    if (this.state.code) return this.fetchToken();
-
     return this.renderScene();
   }
 
   renderScene() {
-    //console.log(" URI " + ${salesforce.oauth_dialog}?client_id=${salesforce.client_id}&redirect_uri=${salesforce.redirect_uri}&response_type=code)
-
     return (
       <WebView
         source={{uri:`${salesforce.oauth_dialog}?client_id=${salesforce.client_id}&redirect_uri=${salesforce.redirect_uri}&response_type=code`,headers:{'Content-Type': 'application/x-www-form-urlencoded'}}}
@@ -47,82 +47,26 @@ export default class extends Component {
         scalesPageToFit={true}
         startInLoadingState={true}
         onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+        onLoad={this.props.onLoad}
       />
 
     );
   }
 
-  renderResponse() {
-    console.log("--- get response ---" + this.state.response)
-    let profile = JSON.parse(this.state.response);
-
-    return (
-      <View style={styles.container}>
-        <Image style={styles.image} source={{uri: profile.picture}} />
-        <Text style={styles.welcome}>{profile.name}</Text>
-        <TouchableHighlight
-          style={[styles.button, (this.state.loading ? styles.buttonDisabled : styles.buttonActive)]}
-          underlayColor={stylesheet.buttonDisabled.backgroundColor}
-          onPress={() => this.onLogout()}>
-          <Text style={styles.buttonText}>{this.state.loading ? `Please Wait . . .` : `Logout`}</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-
-  fetchToken() {
-    console.log("--- get token ---" + this.state.token + "-" + this.state.code )
-    if (this.state.token) return null;
-
-    api.salesforce.token(this.state.code)
-      .then((response) => {
-        if (!response.ok) throw Error(response.statusText || response._bodyText);
-        return response.json()
-      })
-      .then((responseData) => {
-        if (responseData && responseData.access_token) {
-          this.setState({
-            token: responseData.access_token
-          });
-        }
-      })
-      .catch((error) => {
-        this.onError(error);
-      })
-      .done();
-
-    return null;
-  }
-
-  fetchProfile() {
-    console.log("--- get profile ---" + this.state.token + "-" + this.state.response )
-    if (this.state.response) return null;
-
-    api.salesforce.profile(this.state.token)
-      .then((response) => {
-        if (!response.ok) throw Error(response.statusText || response._bodyText);
-        return response.json()
-      })
-      .then((responseData) => {
-        this.setState({
-          response: JSON.stringify(responseData)
-        });
-        this.saveResponse().done();
-      })
-      .catch((error) => {
-        this.onError(error);
-      })
-      .done();
-
-    return null;
-  }
-
   onNavigationStateChange(navState) {
-    console.log(navState.url)
-    if ((/code=/g).test(String(navState.url))) {
-      this.setState({
-        code: String(navState.url).replace(`${salesforce.redirect_uri}?code=`,'')
-      });
+    if ((/oauth2\/success\?code=\w+/g).test(String(navState.url))) {
+        this.props.onLoginStart()
+    }
+
+    if (!this.oauthSuccess) {
+        if ((/code=/g).test(String(navState.url))) {
+            let code = String(navState.url).replace(`${salesforce.redirect_uri}?code=`, '');
+            this.props.onOauthCodeSuccess(code);
+            this.setState({
+                code: code
+            });
+            this.oauthSuccess = true
+        }
     }
   }
 

@@ -3,8 +3,6 @@
 export const key = '@lussatech:session';
 
 export const facebook = {
-      client_id: '1505435769762540',
-  client_secret: '210bdcf50efa27bc5bfc93b81a8b903d',
    oauth_dialog: 'https://www.facebook.com/dialog/oauth',
    redirect_uri: 'https://www.facebook.com/connect/login_success.html',
     oauth_token: 'https://graph.facebook.com/v2.3/oauth/access_token',
@@ -14,8 +12,6 @@ export const facebook = {
 };
 
 export const google = {
-      client_id: '119869562795-rtsscilu9cb895r35dkokrvi6no9hvcd.apps.googleusercontent.com',
-  client_secret: '87bg-4ElD3iUHI9kwR_Z1w2v',
    oauth_dialog: 'https://accounts.google.com/o/oauth2/v2/auth',
    redirect_uri: 'https://www.facebook.com/connect/login_success.html',
     oauth_token: 'https://www.googleapis.com/oauth2/v4/token',
@@ -24,13 +20,11 @@ export const google = {
 };
 
 export const salesforce = {
-    client_id: '3MVG9YDQS5WtC11oAXlFPZVyLr_5JxKKlSxQhp120myNzdxtMfUsEobyOYlFsXp6l.aRHYwf.C2TFo4spMN9Y',
-    client_secret: '5002434176474309266',
-    oauth_dialog: 'https://ap4.salesforce.com/services/oauth2/authorize',
-    redirect_uri: 'https://ap4.salesforce.com/services/oauth2/success',
-    oauth_token: 'https://ap4.salesforce.com/services/oauth2/token',
-    oauth_profile: 'https://ap4.salesforce.com/services/oauth2/profile',
-    oauth_logout: 'https://ap4.salesforce.com/services/oauth2/logout',
+    oauth_dialog: 'https://login.salesforce.com/services/oauth2/authorize',
+    redirect_uri: 'https://login.salesforce.com/services/oauth2/success',
+    oauth_token: 'https://login.salesforce.com/services/oauth2/token',
+    oauth_profile: 'https://login.salesforce.com/services/oauth2/profile',
+    oauth_logout: 'https://login.salesforce.com/services/oauth2/logout',
 };
 
 
@@ -98,42 +92,4 @@ export default {
       return fetch(url, opt);
     },
   },
-  salesforce: {
-    token: function (code) {
-      let url = `${salesforce.oauth_token}?client_id=${salesforce.client_id}&client_secret=${salesforce.client_secret}&redirect_uri=${salesforce.redirect_uri}`,
-      //console.log("url = " + url)
-          opt = {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-    profile: function (token) {
-      console.log("---" + token)
-      let url = `${salesforce.oauth_profile}?alt=json&access_token=${token}`,
-          opt = {
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-    logout: function (token) {
-      console.log("---" + token)
-      let url = `${salesforce.oauth_logout}?token=${token}`,
-          opt = {
-            method: 'get',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          };
-
-      return fetch(url, opt);
-    },
-  }
 };
